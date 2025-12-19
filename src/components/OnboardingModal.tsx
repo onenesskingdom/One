@@ -9,32 +9,32 @@ interface OnboardingModalProps {
 }
 
 const JAPAN_LOCATIONS = [
-  'Tokyo',
-  'Osaka',
-  'Kyoto',
-  'Yokohama',
-  'Nagoya',
-  'Sapporo',
-  'Fukuoka',
-  'Kobe',
-  'Hiroshima',
-  'Sendai',
-  'Nara',
-  'Okinawa',
+  '東京',
+  '大阪',
+  '京都',
+  '横浜',
+  '名古屋',
+  '札幌',
+  '福岡',
+  '神戸',
+  '広島',
+  '仙台',
+  '奈良',
+  '沖縄',
 ];
 
 const GOOD_TRAITS = [
-  'Friendly',
-  'Creative',
-  'Reliable',
-  'Adventurous',
-  'Thoughtful',
-  'Funny',
-  'Caring',
-  'Energetic',
+  '親しみやすい',
+  'クリエイティブ',
+  '信頼できる',
+  '冒険好き',
+  '思いやりがある',
+  '面白い',
+  '世話好き',
+  'エネルギッシュ',
 ];
 
-const BAD_TRAITS = ['Stubborn', 'Impatient', 'Messy', 'Shy'];
+const BAD_TRAITS = ['頑固', '短気', '片付けが苦手', '人見知り'];
 
 export default function OnboardingModal({ userId, onComplete, onClose }: OnboardingModalProps) {
   const [currentCard, setCurrentCard] = useState(1);
@@ -129,19 +129,18 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Sparkles className="w-6 h-6" />
-              <h2 className="text-2xl font-bold">Complete Your Profile</h2>
+              <h2 className="text-2xl font-bold">プロフィールを完了しましょう</h2>
             </div>
             <div className="text-sm bg-white bg-opacity-20 px-3 py-1 rounded-full">
-              {currentCard} of 5
+              5つのうち {currentCard} つめ
             </div>
           </div>
           <div className="mt-4 flex gap-2">
             {[1, 2, 3, 4, 5].map((num) => (
               <div
                 key={num}
-                className={`h-2 flex-1 rounded-full transition-all ${
-                  num <= currentCard ? 'bg-white' : 'bg-white bg-opacity-30'
-                }`}
+                className={`h-2 flex-1 rounded-full transition-all ${num <= currentCard ? 'bg-white' : 'bg-white bg-opacity-30'
+                  }`}
               />
             ))}
           </div>
@@ -152,19 +151,18 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-3">
-                  Relationship Status
+                  交際ステータス
                 </label>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Single', 'In a Relationship', 'Married', 'Other'].map((status) => (
+                  {['独身', '交際中', '既婚', 'その他'].map((status) => (
                     <button
                       key={status}
                       type="button"
                       onClick={() => setFormData({ ...formData, relationship_status: status })}
-                      className={`px-4 py-3 rounded-lg border-2 transition-all ${
-                        formData.relationship_status === status
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-3 rounded-lg border-2 transition-all ${formData.relationship_status === status
+                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {status}
                     </button>
@@ -174,14 +172,14 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-3">
-                  Where do you live?
+                  お住まいはどこですか？
                 </label>
                 <select
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
                 >
-                  <option value="">Select a location</option>
+                  <option value="">場所を選択してください</option>
                   {JAPAN_LOCATIONS.map((location) => (
                     <option key={location} value={location}>
                       {location}
@@ -192,7 +190,7 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-3">
-                  Select your good traits (what friends say about you)
+                  あなたの長所を選択してください（友人から言われることなど）
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   {GOOD_TRAITS.map((trait) => (
@@ -200,11 +198,10 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
                       key={trait}
                       type="button"
                       onClick={() => toggleTrait(trait, true)}
-                      className={`px-4 py-2 rounded-lg border-2 transition-all ${
-                        formData.good_traits.includes(trait)
-                          ? 'border-green-500 bg-green-50 text-green-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-2 rounded-lg border-2 transition-all ${formData.good_traits.includes(trait)
+                        ? 'border-green-500 bg-green-50 text-green-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {trait}
                     </button>
@@ -214,7 +211,7 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-3">
-                  Select your bad traits (what friends might say)
+                  あなたの短所を選択してください（友人が言うかもしれないこと）
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   {BAD_TRAITS.map((trait) => (
@@ -222,11 +219,10 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
                       key={trait}
                       type="button"
                       onClick={() => toggleTrait(trait, false)}
-                      className={`px-4 py-2 rounded-lg border-2 transition-all ${
-                        formData.bad_traits.includes(trait)
-                          ? 'border-red-500 bg-red-50 text-red-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-2 rounded-lg border-2 transition-all ${formData.bad_traits.includes(trait)
+                        ? 'border-red-500 bg-red-50 text-red-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {trait}
                     </button>
@@ -240,22 +236,21 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
             <div className="space-y-6">
               <div>
                 <label className="block text-lg font-semibold text-gray-800 mb-4">
-                  Social Preferences
+                  社交の好み
                 </label>
                 <p className="text-gray-600 mb-4">
-                  Would you rather spend your weekend at a lively party or reading a quiet book?
+                  週末は賑やかなパーティーで過ごしたいですか、それとも静かに本を読んで過ごしたいですか？
                 </p>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Lively Party', 'Quiet Book'].map((option) => (
+                  {['賑やかなパーティー', '静かに読書'].map((option) => (
                     <button
                       key={option}
                       type="button"
                       onClick={() => setFormData({ ...formData, social_weekend: option })}
-                      className={`px-4 py-4 rounded-lg border-2 transition-all ${
-                        formData.social_weekend === option
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-4 rounded-lg border-2 transition-all ${formData.social_weekend === option
+                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {option}
                     </button>
@@ -265,19 +260,18 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
 
               <div>
                 <p className="text-gray-600 mb-4">
-                  Do you recharge by being with many friends or by being alone?
+                  たくさんの友人と一緒にいることで充電しますか、それとも一人でいることで充電しますか？
                 </p>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Many Friends', 'Being Alone'].map((option) => (
+                  {['たくさんの友人', '一人で過ごす'].map((option) => (
                     <button
                       key={option}
                       type="button"
                       onClick={() => setFormData({ ...formData, social_recharge: option })}
-                      className={`px-4 py-4 rounded-lg border-2 transition-all ${
-                        formData.social_recharge === option
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-4 rounded-lg border-2 transition-all ${formData.social_recharge === option
+                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {option}
                     </button>
@@ -291,22 +285,21 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
             <div className="space-y-6">
               <div>
                 <label className="block text-lg font-semibold text-gray-800 mb-4">
-                  Vacation Style
+                  旅行のスタイル
                 </label>
                 <p className="text-gray-600 mb-4">
-                  Do you prefer a vacation at an adventurous mountain cabin or a relaxing beach resort?
+                  冒険的な山小屋での休暇と、リラックスできるビーチリゾート、どちらが好みですか？
                 </p>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Mountain Cabin', 'Beach Resort'].map((option) => (
+                  {['山小屋', 'ビーチリゾート'].map((option) => (
                     <button
                       key={option}
                       type="button"
                       onClick={() => setFormData({ ...formData, vacation_type: option })}
-                      className={`px-4 py-4 rounded-lg border-2 transition-all ${
-                        formData.vacation_type === option
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-4 rounded-lg border-2 transition-all ${formData.vacation_type === option
+                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {option}
                     </button>
@@ -316,19 +309,18 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
 
               <div>
                 <p className="text-gray-600 mb-4">
-                  Would you choose a thrilling rollercoaster or a calm boat ride?
+                  スリル満点のジェットコースターと、穏やかなボート、どちらを選びますか？
                 </p>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Thrilling Rollercoaster', 'Calm Boat Ride'].map((option) => (
+                  {['スリル満点のジェットコースター', '穏やかなボート'].map((option) => (
                     <button
                       key={option}
                       type="button"
                       onClick={() => setFormData({ ...formData, vacation_activity: option })}
-                      className={`px-4 py-4 rounded-lg border-2 transition-all ${
-                        formData.vacation_activity === option
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-4 rounded-lg border-2 transition-all ${formData.vacation_activity === option
+                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {option}
                     </button>
@@ -342,22 +334,21 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
             <div className="space-y-6">
               <div>
                 <label className="block text-lg font-semibold text-gray-800 mb-4">
-                  Planning & Lifestyle
+                  計画とライフスタイル
                 </label>
                 <p className="text-gray-600 mb-4">
-                  When planning a trip, do you like a detailed itinerary or prefer to be spontaneous?
+                  旅行を計画するとき、詳細な日程を決めたいですか、それともその場の気分で決めたいですか？
                 </p>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Detailed Itinerary', 'Spontaneous'].map((option) => (
+                  {['詳細な日程', 'その場の気分'].map((option) => (
                     <button
                       key={option}
                       type="button"
                       onClick={() => setFormData({ ...formData, planning_style: option })}
-                      className={`px-4 py-4 rounded-lg border-2 transition-all ${
-                        formData.planning_style === option
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-4 rounded-lg border-2 transition-all ${formData.planning_style === option
+                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {option}
                     </button>
@@ -367,19 +358,18 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
 
               <div>
                 <p className="text-gray-600 mb-4">
-                  Do you like sudden surprises or prefer to just stay home?
+                  突然のサプライズが好きですか、それとも家にいたいですか？
                 </p>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Sudden Surprises', 'Stay Home'].map((option) => (
+                  {['突然のサプライズ', '家にいたい'].map((option) => (
                     <button
                       key={option}
                       type="button"
                       onClick={() => setFormData({ ...formData, planning_preference: option })}
-                      className={`px-4 py-4 rounded-lg border-2 transition-all ${
-                        formData.planning_preference === option
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-4 rounded-lg border-2 transition-all ${formData.planning_preference === option
+                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {option}
                     </button>
@@ -393,22 +383,21 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
             <div className="space-y-6">
               <div>
                 <label className="block text-lg font-semibold text-gray-800 mb-4">
-                  Interests & Outlook
+                  興味と展望
                 </label>
                 <p className="text-gray-600 mb-4">
-                  Are you more drawn to art and music, or to math and science?
+                  芸術や音楽と、数学や科学、どちらに惹かれますか？
                 </p>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Art & Music', 'Math & Science'].map((option) => (
+                  {['芸術・音楽', '数学・科学'].map((option) => (
                     <button
                       key={option}
                       type="button"
                       onClick={() => setFormData({ ...formData, hobby_interest: option })}
-                      className={`px-4 py-4 rounded-lg border-2 transition-all ${
-                        formData.hobby_interest === option
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-4 rounded-lg border-2 transition-all ${formData.hobby_interest === option
+                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {option}
                     </button>
@@ -418,19 +407,18 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
 
               <div>
                 <p className="text-gray-600 mb-4">
-                  Would you prefer building a project or solving a logic puzzle?
+                  プロジェクトを立ち上げることと、論理パズルを解くこと、どちらが好みですか？
                 </p>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Building a Project', 'Solving a Puzzle'].map((option) => (
+                  {['プロジェクトを立ち上げる', 'パズルを解く'].map((option) => (
                     <button
                       key={option}
                       type="button"
                       onClick={() => setFormData({ ...formData, hobby_activity: option })}
-                      className={`px-4 py-4 rounded-lg border-2 transition-all ${
-                        formData.hobby_activity === option
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-4 rounded-lg border-2 transition-all ${formData.hobby_activity === option
+                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {option}
                     </button>
@@ -439,18 +427,17 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
               </div>
 
               <div>
-                <p className="text-gray-600 mb-4">Is your glass half-full or half-empty?</p>
+                <p className="text-gray-600 mb-4">コップの水は「もう半分しかない」と思いますか、「まだ半分ある」と思いますか？</p>
                 <div className="grid grid-cols-2 gap-3">
-                  {['Half-Full', 'Half-Empty'].map((option) => (
+                  {['まだ半分ある（ポジティブ）', 'もう半分しかない（ネガティブ）'].map((option) => (
                     <button
                       key={option}
                       type="button"
                       onClick={() => setFormData({ ...formData, outlook: option })}
-                      className={`px-4 py-4 rounded-lg border-2 transition-all ${
-                        formData.outlook === option
-                          ? 'border-blue-500 bg-blue-50 text-blue-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className={`px-4 py-4 rounded-lg border-2 transition-all ${formData.outlook === option
+                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        : 'border-gray-200 hover:border-gray-300'
+                        }`}
                     >
                       {option}
                     </button>
@@ -462,10 +449,10 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
                 <div className="text-center">
                   <Sparkles className="w-12 h-12 mx-auto mb-3 text-pink-500" />
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                    Your Kawaii Character
+                    あなたのカワイイキャラクター
                   </h3>
                   <p className="text-gray-600 text-sm">
-                    Character generator will appear here
+                    ここにキャラクタージェネレーターが表示されます
                   </p>
                 </div>
               </div>
@@ -480,7 +467,7 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
             className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-800 disabled:opacity-0 transition-all"
           >
             <ChevronLeft className="w-5 h-5" />
-            Back
+            戻る
           </button>
 
           {currentCard < 5 ? (
@@ -494,7 +481,7 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
               }
               className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-lg hover:from-sky-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
-              Next
+              次へ
               <ChevronRight className="w-5 h-5" />
             </button>
           ) : (
@@ -503,7 +490,7 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
               disabled={!isCard5Valid || loading}
               className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg hover:from-green-600 hover:to-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
-              {loading ? 'Saving...' : 'Complete'}
+              {loading ? '保存中...' : '完了'}
             </button>
           )}
         </div>

@@ -24,7 +24,7 @@ export default function Auth() {
       }
     } else {
       if (!name.trim()) {
-        setError('Please enter your name');
+        setError('名前を入力してください');
         setLoading(false);
         return;
       }
@@ -48,10 +48,10 @@ export default function Auth() {
               <UserPlus className="w-12 h-12 mx-auto mb-3" />
             )}
             <h1 className="text-3xl font-bold mb-2">
-              {isLogin ? 'Welcome Back' : 'Join Us'}
+              {isLogin ? 'ようこそ' : '参加する'}
             </h1>
             <p className="text-sky-100">
-              {isLogin ? 'Sign in to continue your journey' : 'Create your account to get started'}
+              {isLogin ? 'サインインして続けましょう' : 'アカウントを作成して始めましょう'}
             </p>
           </div>
 
@@ -59,7 +59,7 @@ export default function Auth() {
             {!isLogin && (
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Name
+                  名前
                 </label>
                 <input
                   id="name"
@@ -67,7 +67,7 @@ export default function Auth() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Enter your name"
+                  placeholder="名前を入力してください"
                   required={!isLogin}
                 />
               </div>
@@ -75,7 +75,7 @@ export default function Auth() {
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email
+                メールアドレス
               </label>
               <input
                 id="email"
@@ -83,14 +83,14 @@ export default function Auth() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                placeholder="Enter your email"
+                placeholder="メールアドレスを入力してください"
                 required
               />
             </div>
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
+                パスワード
               </label>
               <input
                 id="password"
@@ -98,7 +98,7 @@ export default function Auth() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                placeholder="Enter your password"
+                placeholder="パスワードを入力してください"
                 required
               />
             </div>
@@ -114,7 +114,7 @@ export default function Auth() {
               disabled={loading}
               className="w-full bg-gradient-to-r from-sky-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-sky-600 hover:to-blue-700 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
-              {loading ? 'Please wait...' : isLogin ? 'Sign In' : 'Sign Up'}
+              {loading ? 'お待ちください...' : isLogin ? 'サインイン' : 'サインアップ'}
             </button>
 
             <div className="text-center pt-4">
@@ -127,8 +127,8 @@ export default function Auth() {
                 className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
               >
                 {isLogin
-                  ? "Don't have an account? Sign up"
-                  : 'Already have an account? Sign in'}
+                  ? "アカウントがありませんか？サインアップ"
+                  : 'すでにアカウントがありますか？サインイン'}
               </button>
             </div>
           </form>
